@@ -1,0 +1,63 @@
+@model Blog
+<div class="row tm-row">
+    <div class="col-lg-8 tm-post-col">
+        <div class="tm-post-full">
+            @if (Model != null)
+            {
+                <div class="mb-4">
+                    <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Title</h2>
+                    <p class="tm-mb-40">@Model.UpdateDate.ToString("dd.MM.yyyy HH:mm")</p>
+                    <p>
+                        @Model.Detail
+                    </p>
+                    @* <span class="d-block text-right tm-color-primary">Kategori</span> *@
+                </div>
+
+                <!-- Comments -->
+                <div>
+                    <h2 class="tm-color-primary tm-post-title">Yorumlar</h2>
+                    <hr class="tm-hr-primary tm-mb-45">
+                    <div class="tm-comment tm-mb-45">
+                        <figure class="tm-comment-figure">
+                            <figcaption class="tm-color-primary text-center">Yorum yapan kişi</figcaption>
+                        </figure>
+                        <div>
+                            <p>
+                                Yorum yapanın yorumu
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                @* <a href="#" class="tm-color-primary">idk</a> *@
+                                <span class="tm-color-primary">Yorum yaptıgı tarih</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="/admin/addyorum" class="mb-5 tm-comment-form" method="post">
+                        <h2 class="tm-color-primary tm-post-title mb-4">Yorum Ekle</h2>
+                        <div class="mb-4">
+                            <input required class="form-control" name="username" type="text" >
+                        </div>
+                        @* <div class="mb-4"> *@
+                        @*     <input class="form-control" name="email" type="text"> *@
+                        @* </div> *@
+                        <div class="mb-4">
+                            <textarea required class="form-control" name="comment" rows="6"></textarea>
+                        </div>
+                        <div class="text-right">
+                            <button class="tm-btn tm-btn-primary tm-btn-small">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="alert @ViewBag.MessageCssClass" role="alert">
+                    @ViewBag.Message
+                </div>
+            }
+            else
+            {
+                <p>
+                    Böyle bir post yok
+                </p>
+            }
+
+        </div>
+    </div>
+</div>
